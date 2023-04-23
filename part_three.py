@@ -58,7 +58,9 @@ cv2.imwrite('output_matches.jpg', img_matches)
 # Prints amount of good matches
 print('Amount of matches:', len(good_matches))
 
-# Write the matches into text file
-with open('matches.txt', 'w') as f:
+# Write the matches into CSV file
+with open('matches.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['x1', 'y1', 'x2', 'y2'])
     for i in range(len(good_matches)):
-        f.write(f'{points1[i][0][0]}, {points1[i][0][1]} - {points2[i][0][0]}, {points2[i][0][1]}\n')
+        writer.writerow([points1[i][0][0], points1[i][0][1], points2[i][0][0], points2[i][0][1]])
