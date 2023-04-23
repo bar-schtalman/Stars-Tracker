@@ -1,52 +1,64 @@
+import sys
 import cv2
 import numpy as np
 
-# 1. Preprocess the images
-img1 = cv2.imread('fr1.jpg')
-img2 = cv2.imread('fr2.jpg')
-img1 = cv2.resize(img1, (640, 480)) # resize the images to the same dimensions
-img2 = cv2.resize(img2, (640, 480))
-gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY) # convert them to grayscale
-gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-gray1 = cv2.GaussianBlur(gray1, (5, 5), 0) # apply filters to enhance visibility
-gray2 = cv2.GaussianBlur(gray2, (5, 5), 0)
+# Get the image filenames from command line arguments
+# run it this way:
+# py part_three.py image1.jpg image2.jpg
+img1_filename = sys.argv[1]
+img2_filename = sys.argv[2]
 
-# 2. Detect features in each image
-orb = cv2.ORB_create() # create ORB feature detector
-kp1, des1 = orb.detectAndCompute(gray1, None) # detect keypoints and compute descriptors for img1
-kp2, des2 = orb.detectAndCompute(gray2, None) # detect keypoints and compute descriptors for img2
+# Gets two images and turn them gray
+img1 = cv2.imread(img1_filename, cv2.IMREAD_GRAYSCALE)
+img2 = cv2.imread(img2_filename, cv2.IMREAD_GRAYSCALE)
 
-# 3. Match features between the two images
-bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True) # create Brute-Force Matcher
-matches = bf.match(des1, des2) # match descriptors between img1 and img2
-matches = sorted(matches, key = lambda x:x.distance) # sort the matches by distance
 
-# 4. Geometric verification
+# Creates a Scale-Invariant Feature Transform (SIFT) object
+sift = cv2.SIFT_create()
+
+# Use SIFT's function to detect key-points and compute their descriptors in an image.
+kp1, des1 = sift.detectAndCompute(img1, None)
+kp2, des2 = sift.detectAndCompute(img2, None)
+
+# Uses the FLANN (Fast Library for Approximate Nearest Neighbors) algorithm to perform the feature matching
+matcher = cv2.FlannBasedMatcher()
+
+# Using the KNN method we get a list of matches, where each match
+# is represented by a pair of object which contains information about the
+# distance between the descriptors of the two key-points ((x,y) location)
+# and their indices in the descriptor arrays.
+#
+# The knnMatch method takes three arguments: descriptor, a second descriptor, and some k.
+#       First & second descriptors are the key-points in the two images we want to match
+#       K - return the best matches (2 in our case) for each keypoint in the first descriptor
+matches = matcher.knnMatch(des1, des2, k=2)
+
+# Declare & init a list of matches:
 good_matches = []
-for m in matches:
-    if m.distance < 0.7 * matches[0].distance: # apply Lowe's ratio test to filter out false matches
-        good_matches.append(m)
 
-M = None
-if len(good_matches) > 10: # check if enough good matches are found
-    src_pts = np.float32([kp1[m.queryIdx].pt for m in good_matches]).reshape(-1, 1, 2)
-    dst_pts = np.float32([kp2[m.trainIdx].pt for m in good_matches]).reshape(-1, 1, 2)
-    M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0) # estimate the homography matrix using RANSAC
-    matches_mask = mask.ravel().tolist()
-else:
-    print("Not enough good matches are found")
+# Only apply the good matches but not every matches
+for o, p in matches:
+    if o.distance < 0.75*p.distance:
+        good_matches.append(o)
 
-# 5. Visualize the matches
-h, w = gray1.shape
-if M is not None:
-    pts = np.float32([[0, 0], [0, h-1], [w-1, h-1], [w-1, 0]]).reshape(-1, 1, 2)
-    dst = cv2.perspectiveTransform(pts, M)
-    img2 = cv2.polylines(img2, [np.int32(dst)], True, 255, 3, cv2.LINE_AA)
-    draw_params = dict(matchColor=(0, 255, 0), singlePointColor=None, matchesMask=matches_mask, flags=2)
-    img3 = cv2.drawMatches(img1, kp1, img2, kp2, good_matches, None, **draw_params)
-    cv2.imshow("Matches", img3)
-else:
-    cv2.imshow("Matches", img2)
+# Coordinates of the (x,y) location that correspond to be considered as a match:
+# reshape (x, y, z)
+# x - "infer the remaining dimensions",
+# y - "insert a new dimension at position y",
+# z - "each element has two components".
+points1 = np.float32([kp1[m.queryIdx].pt for m in good_matches]).reshape(-1, 1, 2)
+points2 = np.float32([kp2[m.trainIdx].pt for m in good_matches]).reshape(-1, 1, 2)
 
-cv2.waitKey(0)
+# Put each photo to next one and mark the matches with lines
+img_matches = cv2.drawMatches(img1, kp1, img2, kp2, good_matches, None)
 
+# Output the matches
+cv2.imwrite('output_matches.jpg', img_matches)
+
+# Prints amount of good matches
+print('Amount of matches:', len(good_matches))
+
+# Write the matches into text file
+with open('matches.txt', 'w') as f:
+    for i in range(len(good_matches)):
+        f.write(f'{points1[i][0][0]}, {points1[i][0][1]} - {points2[i][0][0]}, {points2[i][0][1]}\n')
