@@ -11,7 +11,7 @@
 #### 7. Compre the distances and find the best match for each star using treshold value
 ##### *if the distance is lower then treshold value -> mark as appeard in both pictures
 
-## Part B
+## Example of Part B
 ### Stars detection tool
 #### Insert picture path in terminal (loof for instruction in the code)
 #### output examples
@@ -20,7 +20,7 @@
 ##### ST_db1.png
 ![pic2](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/st_db1_detected.jpeg)
 
-## Part C
+## Example of Part C
 Stars detection between fr1 and fr2
 ![pic](https://github.com/bar-schtalman/Stars-Tracker/blob/433deb5745caf3879dc5fc8391b3bd5f9952f7de/readme_pics/stars_detected%20fr1_fr2.jpeg)
 Stars detection between ST_db1 and ST_db2
