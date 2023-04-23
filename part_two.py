@@ -9,6 +9,7 @@ import argparse
 This is a part where using the terminal you upload a photo by writing the following command :
 python main.py img.png 
 * img.png is the name of the image you wish you upload *
+the output is a saved picture by name aftermain1.jpg
 
 More information about this code : 
 This code plots a csv which writes the coordinates x y and r b , which r is the radiou and b is the brightness 

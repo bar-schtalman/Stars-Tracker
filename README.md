@@ -10,3 +10,8 @@
 #### 6. Look for matching stars from picture 1' in picture 2'
 #### 7. Compre the distances and find the best match for each star using treshold value
 ##### *if the distance is lower then treshold value -> mark as appeard in both pictures
+
+## Part B
+### Stars detection tool
+#### Insert picture path in terminal (loof for instruction in the code)
+#### output examples
