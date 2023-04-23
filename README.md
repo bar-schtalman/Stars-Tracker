@@ -52,7 +52,7 @@
 | 2728.961  | 93.4178   | 2719.7505 | 600.8535  |
 | 3018.1619 | 370.83466 | 1086.475  | 19.66864  |
 
-Stars detection between ST_db1 and ST_db2
+### Stars detection between ST_db1 and ST_db2
 ![pic3](https://github.com/bar-schtalman/Stars-Tracker/blob/d0953ae4451d05cbf327d2e8994970777c94d066/readme_pics/st1_vs_st2.jpeg)
 
 ### (x1,y1) - st_db1 | (x2,y2) - st_db2
