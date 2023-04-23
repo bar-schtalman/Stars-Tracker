@@ -21,14 +21,9 @@
 ![pic2](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/st_db1_detected.jpeg)
 
 ## Example of Part C
-Stars detection between fr1 and fr2
+### Stars detection between fr1 and fr2
 ![pic](https://github.com/bar-schtalman/Stars-Tracker/blob/433deb5745caf3879dc5fc8391b3bd5f9952f7de/readme_pics/stars_detected%20fr1_fr2.jpeg)
-Stars detection between ST_db1 and ST_db2
-![pic3](https://github.com/bar-schtalman/Stars-Tracker/blob/d0953ae4451d05cbf327d2e8994970777c94d066/readme_pics/st1_vs_st2.jpeg)
-
-### fr1.jpg ---------- fr2.jpg
-
-
+### x1,y1 - fr1 | x2,y2 - fr2
 | x1        | y1        | x2        | y2        |
 |-----------|-----------|-----------|-----------|
 | 216.95895 | 94.97821  | 1220.163  | 764.5918  |
@@ -55,9 +50,10 @@ Stars detection between ST_db1 and ST_db2
 | 2728.961  | 93.4178   | 2719.7505 | 600.8535  |
 | 3018.1619 | 370.83466 | 1086.475  | 19.66864  |
 
+Stars detection between ST_db1 and ST_db2
+![pic3](https://github.com/bar-schtalman/Stars-Tracker/blob/d0953ae4451d05cbf327d2e8994970777c94d066/readme_pics/st1_vs_st2.jpeg)
 
-### ST_db1.png ------- ST_db2.png
-
+### x1,y1 - st_db1 | x2,y2 - st_db2
 | x1        | y1         | x2         | y2        |
 |-----------|------------|------------|-----------|
 | 9.33928   | 717.25964  | 836.1418   | 231.76602 |
