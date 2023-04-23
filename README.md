@@ -15,6 +15,14 @@
 ### Stars detection tool
 #### Insert picture path in terminal (loof for instruction in the code)
 #### output examples
-![pic1](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/fr1_detected.jpeg)  
-![pic2](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/st_db1_detected.jpeg)  
+##### fr_1.jpg
+![pic1](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/fr1_detected.jpeg)
+##### ST_db1.png
+![pic2](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/st_db1_detected.jpeg)
+
+## Part C
+Stars detection between fr1 and fr2
+![pic](https://github.com/bar-schtalman/Stars-Tracker/blob/433deb5745caf3879dc5fc8391b3bd5f9952f7de/readme_pics/stars_detected%20fr1_fr2.jpeg)
+Stars detection between ST_db1 and ST_db2
+![pic3](https://github.com/bar-schtalman/Stars-Tracker/blob/d0953ae4451d05cbf327d2e8994970777c94d066/readme_pics/st1_vs_st2.jpeg)
 
