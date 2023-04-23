@@ -15,3 +15,6 @@
 ### Stars detection tool
 #### Insert picture path in terminal (loof for instruction in the code)
 #### output examples
+![pic1](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/fr1_detected.jpeg)  
+![pic2](https://github.com/bar-schtalman/Stars-Tracker/blob/8f08bcc63e963ef98c57f8e129776d176d13da9e/readme_pics/st_db1_detected.jpeg)  
+
